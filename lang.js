@@ -1,0 +1,436 @@
+// ─────────────────────────────────────────────────────────────────
+// lang.js — словарь переводов интерфейса шахматки
+// Чтобы добавить язык: скопируй блок 'en', измени код и переведи.
+// Чтобы добавить ключ: добавь во все три блока одновременно.
+// ─────────────────────────────────────────────────────────────────
+
+const LANG = {
+
+  ru: {
+    roleAnon:'Аноним', roleSub:'Подрядчик', roleGen:'Генподрядчик', demoBadge:'ДЕМО · правки не сохраняются', demoReset:'↺ Сбросить демо',
+    // Топбар
+    title:          'Шахматка приёмки',
+    refresh:        '↻ Обновить',
+    yourName:       'Ваше имя…',
+    bySection:      'По секции',
+    byWork:         'По виду работ',
+    bySummary:      'Сводка',
+    byGantt:        'График',
+    byTasks:        'Задания',
+    tasksFor:       'Задания к',
+    gByFloor:       'По этажам',
+    gByWork:        'По видам работ',
+    gByGroup:       'По группам',
+    onTrack:        'в графике',
+    noTasks:        'Нет заданий к этой дате',
+    // Задания — шапка столбцов
+    colWork:        'Работа',
+    colPlace:       'Место',
+    colDates:       'Сроки',
+    colFact:        'Факт',
+    colTarget:      'Цель',
+    colStatus:      'Отставание',
+
+    // Подготовка (РД → Тендер → Контракт) и фронт работ
+    byPrep:         'Подготовка',
+    prepRd:         'РД',
+    prepTender:     'Тендер',
+    prepContract:   'Контракт',
+    prepStart:      'Старт работ',
+    stReady:        'готово',
+    stRun:          'в работе',
+    stIdle:         'не начато',
+    stLate:         'просрочено',
+    readyBy:        'до',
+    durShort:       'дн.',
+    frontClosed:    'Фронт закрыт',
+    noContract:     'Контракт не заключён',
+    predLbl:        'предшественник',
+    riskNoFront:    'Фронт закрыт',
+    riskNoRd:       'РД не выпущена',
+    riskNoTender:   'Тендер не проведён',
+    riskTenderStart:'Старт тендера',
+    rdNotReady:     'РД не выпущена',
+    tenderNotReady: 'Тендер не проведён',
+    risksTitle:     'Риски',
+    prepClickHint:  'Клик — карточка подготовки',
+    prepMarkReady:  'Отметить готовым',
+    prepMarkUnready:'Снять готовность',
+    prepNone:       'не настроено',
+    colIssues:      'Комментарий',
+
+    // Ресурсы
+    showCrew:       'Люди',
+    volume:         'Объём',
+    rateLbl:        'Выработка',
+    perDay:         '/смену',
+    crewNeed:       'Требуется',
+    crewFact:       'Людей фактически:',
+    crewOk:         'успеваем',
+    crewLate:       'опоздание',
+    avgPct:         'Средний %',
+    maxDev:         'Макс. отставание',
+    sumByGroup:     'Сводка по группам работ',
+    sumByWork:      'Сводка по видам работ',
+    scaleLbl:       'Масштаб:',
+    noDates:        'нет дат',
+
+    // Панель «Что показывать» и режим «к дате»
+    showBtn:        'Вид',
+    showPct:        'Процент',
+    showStart:      'Дата начала',
+    showEnd:        'Дата окончания',
+    showDev:        'Отставание',
+    showSec:        'Секция',
+    showFloor:      'Этаж',
+    showVol:        'Объём',
+    showFront:      'Фронт работ 🔒',
+    showRd:         'РД 📐',
+    showTender:     'Тендер 🧾',
+    showContract:   'Контракт ✍',
+    deadlineLbl:    'К дате:',
+
+    // Вход / роли
+    passHolder:     'Пароль…',
+    login:          'Войти',
+    logout:         'Выйти',
+    readOnly:       'Только просмотр',
+    wrongPass:      'Неверный пароль',
+    noSecAccess:    'Нет доступа к этой секции',
+    noWorkAccess:   'Нет доступа к этому виду работ',
+
+    // Фильтры
+    sectionLbl:     'Секция:',
+    groupLbl:       'Группа:',
+    workLbl:        'Вид работ:',
+    allSections:    'Все',
+    allGroups:      'Все группы',
+    allWorks:       'Все работы',
+
+    // Шахматка — заголовки
+    sectionPrefix:  'Секция',
+    floorShort:     'эт.',
+    worksAbove:     'Работы выше 0.000',
+    worksBelow:     'Работы ниже 0.000',
+    workOnSec:      'Работа на секцию',
+    cutLbl:         'Разрез:',
+    allCuts:        'Весь разрез',
+    onSecOpt:       'На секцию',
+    onSiteOpt:      'Площадка',
+    workOnSite:     'Работы на площадку',
+    byFloorWorks:   'Поэтажные работы',
+    startShort:     'Старт',
+    finishShort:    'Финиш',
+
+    // Модальное окно
+    pctLabel:       'Процент выполнения',
+    save:           'Сохранить',
+    cancel:         'Отмена',
+    factPrefix:     '✓ Факт:',
+    planPrefix:     'План:',
+
+    // Статусы / тосты
+    saving:         'Сохранение…',
+    saved:          '✓ Сохранено',
+    errorSave:      'Не сохранилось — попробуй ещё раз',
+    loaded:         'Загружено',
+
+    // Статусбар
+    total:          'всего',
+    done:           '100%',
+    inProg:         'в работе',
+    hint:           'Нажмите на ячейку для обновления',
+
+    // Лоадер
+    loading:        'Загрузка…',
+    loadingSheets:  'Загрузка из Google Sheets…',
+
+    // Прочее
+    anonymous:      'Аноним',
+  },
+
+  sr: {
+    roleAnon:'Anonimno', roleSub:'Podizvođač', roleGen:'Generalni izvođač', demoBadge:'DEMO · izmene se ne čuvaju', demoReset:'↺ Reset demoa',
+    // Topbar
+    title:          'Šahmatka prijema',
+    refresh:        '↻ Osveži',
+    yourName:       'Vaše ime…',
+    bySection:      'Po sekciji',
+    byWork:         'Po vrsti radova',
+    bySummary:      'Pregled',
+    byGantt:        'Gantogram',
+    byTasks:        'Zadaci',
+    tasksFor:       'Zadaci do',
+    gByFloor:       'Po spratovima',
+    gByWork:        'Po vrsti radova',
+    gByGroup:       'Po grupama',
+    onTrack:        'po planu',
+    noTasks:        'Nema zadataka do ovog datuma',
+    colWork:        'Rad',
+    colPlace:       'Mesto',
+    colDates:       'Rokovi',
+    colFact:        'Stvarno',
+    colTarget:      'Cilj',
+    colStatus:      'Kašnjenje',
+
+    // Priprema (PD → Tender → Ugovor) i front radova
+    byPrep:         'Priprema',
+    prepRd:         'PD',
+    prepTender:     'Tender',
+    prepContract:   'Ugovor',
+    prepStart:      'Početak radova',
+    stReady:        'gotovo',
+    stRun:          'u toku',
+    stIdle:         'nije počelo',
+    stLate:         'kasni',
+    readyBy:        'do',
+    durShort:       'dana',
+    frontClosed:    'Front zatvoren',
+    noContract:     'Ugovor nije potpisan',
+    predLbl:        'prethodnik',
+    riskNoFront:    'Front zatvoren',
+    riskNoRd:       'PD nije izdata',
+    riskNoTender:   'Tender nije sproveden',
+    riskTenderStart:'Početak tendera',
+    rdNotReady:     'PD nije izdata',
+    tenderNotReady: 'Tender nije sproveden',
+    risksTitle:     'Rizici',
+    prepClickHint:  'Klik — kartica pripreme',
+    prepMarkReady:  'Označi kao gotovo',
+    prepMarkUnready:'Poništi gotovo',
+    prepNone:       'nije podešeno',
+    colIssues:      'Komentar',
+
+    // Resursi
+    showCrew:       'Ljudi',
+    volume:         'Obim',
+    rateLbl:        'Učinak',
+    perDay:         '/smeni',
+    crewNeed:       'Potrebno',
+    crewFact:       'Stvarno ljudi:',
+    crewOk:         'stižemo',
+    crewLate:       'kašnjenje',
+    avgPct:         'Prosečan %',
+    maxDev:         'Maks. kašnjenje',
+    sumByGroup:     'Pregled po grupama radova',
+    sumByWork:      'Pregled po vrstama radova',
+    scaleLbl:       'Razmera:',
+    noDates:        'nema datuma',
+
+    // Panel „Šta prikazati" i režim „do datuma"
+    showBtn:        'Prikaz',
+    showPct:        'Procenat',
+    showStart:      'Datum početka',
+    showEnd:        'Datum završetka',
+    showDev:        'Kašnjenje',
+    showSec:        'Sekcija',
+    showFloor:      'Sprat',
+    showVol:        'Obim',
+    showFront:      'Front radova 🔒',
+    showRd:         'PD 📐',
+    showTender:     'Tender 🧾',
+    showContract:   'Ugovor ✍',
+    deadlineLbl:    'Do datuma:',
+
+    // Prijava / uloge
+    passHolder:     'Lozinka…',
+    login:          'Prijava',
+    logout:         'Odjava',
+    readOnly:       'Samo pregled',
+    wrongPass:      'Pogrešna lozinka',
+    noSecAccess:    'Nema pristupa ovoj sekciji',
+    noWorkAccess:   'Nema pristupa ovoj vrsti radova',
+
+    // Filteri
+    sectionLbl:     'Sekcija:',
+    groupLbl:       'Grupa:',
+    workLbl:        'Vrsta radova:',
+    allSections:    'Sve',
+    allGroups:      'Sve grupe',
+    allWorks:       'Svi radovi',
+
+    // Šahmatka — naslovi
+    sectionPrefix:  'Sekcija',
+    floorShort:     'sp.',
+    worksAbove:     'Radovi iznad 0.000',
+    worksBelow:     'Radovi ispod 0.000',
+    workOnSec:      'Rad na sekciji',
+    cutLbl:         'Presek:',
+    allCuts:        'Ceo presek',
+    onSecOpt:       'Na sekciju',
+    onSiteOpt:      'Gradilište',
+    workOnSite:     'Radovi na gradilištu',
+    byFloorWorks:   'Radovi po spratovima',
+    startShort:     'Start',
+    finishShort:    'Kraj',
+
+    // Modalni prozor
+    pctLabel:       'Procenat izvršenja',
+    save:           'Sačuvaj',
+    cancel:         'Otkaži',
+    factPrefix:     '✓ Završeno:',
+    planPrefix:     'Plan:',
+
+    // Statusi / tosti
+    saving:         'Čuvanje…',
+    saved:          '✓ Sačuvano',
+    errorSave:      'Nije sačuvano — pokušaj ponovo',
+    loaded:         'Učitano',
+
+    // Statusbar
+    total:          'ukupno',
+    done:           '100%',
+    inProg:         'u radu',
+    hint:           'Kliknite na ćeliju za ažuriranje',
+
+    // Loader
+    loading:        'Učitavanje…',
+    loadingSheets:  'Učitavanje iz Google Sheets…',
+
+    // Ostalo
+    anonymous:      'Anonimno',
+  },
+
+  en: {
+    roleAnon:'Anonymous', roleSub:'Subcontractor', roleGen:'General contractor', demoBadge:'DEMO · changes are not saved', demoReset:'↺ Reset demo',
+    // Topbar
+    title:          'Acceptance Grid',
+    refresh:        '↻ Refresh',
+    yourName:       'Your name…',
+    bySection:      'By section',
+    byWork:         'By work type',
+    bySummary:      'Summary',
+    byGantt:        'Timeline',
+    byTasks:        'Tasks',
+    tasksFor:       'Tasks for',
+    gByFloor:       'By floor',
+    gByWork:        'By work type',
+    gByGroup:       'By group',
+    onTrack:        'on track',
+    noTasks:        'No tasks for this date',
+    colWork:        'Work',
+    colPlace:       'Location',
+    colDates:       'Dates',
+    colFact:        'Actual',
+    colTarget:      'Target',
+    colStatus:      'Lag',
+
+    // Preparation (Design → Tender → Contract) and work front
+    byPrep:         'Prep',
+    prepRd:         'Design',
+    prepTender:     'Tender',
+    prepContract:   'Contract',
+    prepStart:      'Work start',
+    stReady:        'done',
+    stRun:          'in progress',
+    stIdle:         'not started',
+    stLate:         'overdue',
+    readyBy:        'by',
+    durShort:       'days',
+    frontClosed:    'Front closed',
+    noContract:     'No contract',
+    predLbl:        'predecessor',
+    riskNoFront:    'Front closed',
+    riskNoRd:       'Design not issued',
+    riskNoTender:   'Tender not held',
+    riskTenderStart:'Tender start',
+    rdNotReady:     'Design not issued',
+    tenderNotReady: 'Tender not held',
+    risksTitle:     'Risks',
+    prepClickHint:  'Click — preparation card',
+    prepMarkReady:  'Mark as done',
+    prepMarkUnready:'Unmark done',
+    prepNone:       'not set',
+    colIssues:      'Comment',
+
+    // Resources
+    showCrew:       'Crew',
+    volume:         'Volume',
+    rateLbl:        'Rate',
+    perDay:         '/shift',
+    crewNeed:       'Required',
+    crewFact:       'Actual crew:',
+    crewOk:         'on time',
+    crewLate:       'late by',
+    avgPct:         'Avg %',
+    maxDev:         'Max lag',
+    sumByGroup:     'Summary by work group',
+    sumByWork:      'Summary by work type',
+    scaleLbl:       'Scale:',
+    noDates:        'no dates',
+
+    // "What to show" panel and "by date" mode
+    showBtn:        'View',
+    showPct:        'Percent',
+    showStart:      'Start date',
+    showEnd:        'End date',
+    showDev:        'Lag',
+    showSec:        'Section',
+    showFloor:      'Floor',
+    showVol:        'Volume',
+    showFront:      'Work front 🔒',
+    showRd:         'Design 📐',
+    showTender:     'Tender 🧾',
+    showContract:   'Contract ✍',
+    deadlineLbl:    'By date:',
+
+    // Login / roles
+    passHolder:     'Password…',
+    login:          'Log in',
+    logout:         'Log out',
+    readOnly:       'View only',
+    wrongPass:      'Wrong password',
+    noSecAccess:    'No access to this section',
+    noWorkAccess:   'No access to this work type',
+
+    // Filters
+    sectionLbl:     'Section:',
+    groupLbl:       'Group:',
+    workLbl:        'Work type:',
+    allSections:    'All',
+    allGroups:      'All groups',
+    allWorks:       'All works',
+
+    // Grid — headers
+    sectionPrefix:  'Section',
+    floorShort:     'fl.',
+    worksAbove:     'Works above 0.000',
+    worksBelow:     'Works below 0.000',
+    workOnSec:      'Section works',
+    cutLbl:         'View by:',
+    allCuts:        'Everything',
+    onSecOpt:       'Per section',
+    onSiteOpt:      'Site',
+    workOnSite:     'Site works',
+    byFloorWorks:   'Floor-by-floor works',
+    startShort:     'Start',
+    finishShort:    'Finish',
+
+    // Modal
+    pctLabel:       'Completion %',
+    save:           'Save',
+    cancel:         'Cancel',
+    factPrefix:     '✓ Fact:',
+    planPrefix:     'Plan:',
+
+    // Status / toasts
+    saving:         'Saving…',
+    saved:          '✓ Saved',
+    errorSave:      'Not saved — try again',
+    loaded:         'Loaded',
+
+    // Statusbar
+    total:          'total',
+    done:           '100%',
+    inProg:         'in progress',
+    hint:           'Click a cell to update',
+
+    // Loader
+    loading:        'Loading…',
+    loadingSheets:  'Loading from Google Sheets…',
+
+    // Other
+    anonymous:      'Anonymous',
+  }
+
+};

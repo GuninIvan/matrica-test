@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шахматка</title>
+<link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><span class="logo-badge">СТР</span><span id="ui-title"></span></div>
+  <div class="sep"></div>
+  <button class="btn" id="ui-refresh" onclick="loadAll()"></button>
+  <span class="demo-badge" id="ui-demoBadge"></span>
+  <button class="btn" id="ui-demoReset" onclick="resetDemo()"></button>
+  <div class="sync-dot" id="sdot"></div>
+  <span class="sync-txt" id="stxt"></span>
+  <div class="tb-right">
+    <span id="userArea"></span>
+    <div class="sep"></div>
+    <div class="chips">
+      <span class="chip on" id="mode-sec" onclick="setMode('section')"></span>
+      <span class="chip" id="mode-work" onclick="setMode('work')"></span>
+      <span class="chip" id="mode-gantt" onclick="setMode('gantt')"></span>
+      <span class="chip" id="mode-tasks" onclick="setMode('tasks')"></span>
+      <span class="chip" id="mode-sum" onclick="setMode('summary')"></span>
+      <span class="chip" id="mode-prep" onclick="setMode('prep')"></span>
+    </div>
+    <div class="sep"></div>
+    <div class="chips lang-chips">
+      <span class="chip on" id="lang-ru" onclick="setLang('ru')">RU</span>
+      <span class="chip" id="lang-sr" onclick="setLang('sr')">SR</span>
+      <span class="chip" id="lang-en" onclick="setLang('en')">EN</span>
+    </div>
+  </div>
+</div>
+
+<div class="filterbar">
+  <span class="secui fl" id="ui-sectionLbl"></span>
+  <div class="secui chips" id="secChips"></div>
+  <div class="secui sep" id="secSep"></div>
+  <span class="fl" id="ui-cutLbl"></span>
+  <div class="msel" id="cutMs"></div>
+  <div class="sep"></div>
+  <span class="fl" id="ui-groupLbl"></span>
+  <div class="msel" id="groupMs"></div>
+  <div class="sep"></div>
+  <span class="fl" id="ui-workLbl"></span>
+  <div class="msel" id="workMs"></div>
+  <div class="sep"></div>
+  <span class="fl" id="ui-deadlineLbl"></span>
+  <input type="date" class="fsel" id="deadlineInp" onchange="render()">
+  <button class="btn" id="viewBtn" onclick="toggleViewPanel()">👁 <span id="ui-showBtn"></span></button>
+</div>
+
+<div class="filterbar" id="viewPanel" style="display:none;"></div>
+
+<div class="board-wrap" id="bwrap">
+  <div class="loader" id="loader"><div class="spin"></div><div class="loader-txt" id="loaderTxt"></div></div>
+  <div id="riskWrap" style="display:none"></div>
+  <div class="empty-state" id="emptyState"><div class="empty-ico">🏗</div><div class="empty-ttl" id="ui-loading"></div></div>
+  <table id="board" style="display:none"></table>
+  <div id="subBoards"></div>
+  <div id="ganttWrap" style="display:none"></div>
+  <div id="sumWrap" style="display:none"></div>
+  <div id="tasksWrap" style="display:none"></div>
+  <div id="prepWrap" style="display:none"></div>
+</div>
+
+<div class="stb">
+  <div class="hint" id="ui-hint"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="mo-head">
+      <div class="mo-title" id="moTitle"></div>
+      <div class="mo-sub" id="moSub"></div>
+    </div>
+    <div class="mo-body">
+      <div class="fg" id="pctBlock">
+        <div class="fg-lbl" id="ui-pctLabel"></div>
+        <div class="pct-row">
+          <input type="range" class="pct-sl" id="pctSl" min="0" max="100" step="1" value="0" oninput="updPct(this.value)">
+          <div class="pct-big" id="pctBig">0%</div>
+        </div>
+        <div class="pct-btns">
+          <button class="pct-b" onclick="setPct(0)">0</button>
+          <button class="pct-b" onclick="setPct(25)">25</button>
+          <button class="pct-b" onclick="setPct(50)">50</button>
+          <button class="pct-b" onclick="setPct(75)">75</button>
+          <button class="pct-b" onclick="setPct(90)">90</button>
+          <button class="pct-b" onclick="setPct(100)">100</button>
+        </div>
+      </div>
+      <div class="fg" id="crewBlock" style="display:none">
+        <div class="crew-info" id="crewInfo"></div>
+        <div class="crew-row">
+          <span class="fg-lbl" id="ui-crewFact"></span>
+          <input type="number" class="crew-inp" id="crewInp" min="1" step="1" oninput="updCrew()">
+          <span class="crew-hint" id="crewHint"></span>
+        </div>
+      </div>
+      <div class="ro-note" id="roNote" style="display:none"></div>
+    </div>
+    <div class="mo-foot">
+      <button class="btn" id="ui-cancel" onclick="closeModal()"></button>
+      <button class="btn btn-pri" id="saveBtn" onclick="saveCell()"></button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="prepOverlay" onclick="closePrepCard(event)">
+  <div class="modal" id="prepModal"></div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script src="lang.js?v=8"></script>
+<script src="demo-data.js?v=8"></script>
+<script src="core.js?v=8"></script>
+<script src="filters.js?v=8"></script>
+<script src="cells.js?v=8"></script>
+<script src="gantt.js?v=8"></script>
+<script src="tasks.js?v=8"></script>
+<script src="prep.js?v=8"></script>
+<script src="render.js?v=8"></script>
+<script src="summary.js?v=8"></script>
+<script src="tables.js?v=8"></script>
+<script src="modal.js?v=8"></script>
+</body>
+</html>
