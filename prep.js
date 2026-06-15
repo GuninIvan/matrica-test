@@ -96,7 +96,8 @@ function renderPrep(container){
 
   groups.forEach(grp=>{
     h+=`<div class="sum-card prep-grp"><div class="tk-sec-h">${esc(groupLabel(grp.g))} <span class="n">· ${grp.items.length}</span></div>`;
-    h+=`<table class="prep-tbl"><thead><tr>`+
+    const colg=`<colgroup><col style="width:24%">`+PREP_PHASES.map(function(){return '<col style="width:21%">';}).join('')+`<col style="width:13%"></colgroup>`;
+    h+=`<table class="prep-tbl">${colg}<thead><tr>`+
        `<th class="pp-work">${esc(t('colWork'))}</th>`+
        PREP_PHASES.map(ph=>`<th>${esc(t(ph.lbl))}</th>`).join('')+
        `<th class="pp-start">${esc(t('prepStart'))}</th>`+
