@@ -157,7 +157,7 @@ function groupLabel(g){
 }
 
 // ── ЯЗЫК ─────────────────────────────────────────────────────────
-let CURRENT_LANG = 'sr';
+let CURRENT_LANG = 'ru';
 function t(key){ return (LANG[CURRENT_LANG]&&LANG[CURRENT_LANG][key]) ? LANG[CURRENT_LANG][key] : key; }
 
 function setLang(lang){
@@ -170,6 +170,7 @@ function setLang(lang){
 
 function applyLang(){
   document.getElementById('ui-title').textContent      = t('title');
+  document.getElementById('ui-refresh').textContent    = t('refresh');
   var _db=document.getElementById('ui-demoBadge'); if(_db) _db.textContent=t('demoBadge');
   var _dr=document.getElementById('ui-demoReset'); if(_dr) _dr.textContent=t('demoReset');
   document.getElementById('mode-sec').textContent      = t('bySection');
@@ -197,32 +198,6 @@ function applyLang(){
   rebuildWorkFilter();
   buildViewPanel();
   renderUserArea();
-  applyOb();
-}
-
-
-// ── ОНБОРДИНГ (демо) ─────────────────────────────────────────────
-// Подписи-зоны включены по умолчанию; тумблер их скрывает (запоминается).
-// Полоса ob-strip (интро + жёлтый CTA с почтой) видна ВСЕГДА — не прячется.
-let HINTS = (localStorage.getItem('shk_hints')!=='0');
-const OB_ZONES = [['ob-demo','obcDemo','obtDemo'],['ob-role','obcRole','obtRole'],
-  ['ob-mode','obcMode','obtMode'],['ob-lang','obcLang','obtLang'],
-  ['ob-filter','obcFilter','obtFilter'],['ob-date','obcDate','obtDate'],
-  ['ob-view','obcView','obtView']];
-function applyOb(){
-  const intro=document.getElementById('ob-intro'); if(intro) intro.innerHTML=t('obIntro');
-  const cta=document.getElementById('ob-cta');     if(cta)   cta.innerHTML=t('obCta');
-  const tg=document.getElementById('ob-toggle');   if(tg)    tg.textContent=HINTS?t('obHintsOn'):t('obHintsOff');
-  OB_ZONES.forEach(([cls,cap,tip])=>{
-    const el=document.querySelector('.'+cls);
-    if(el){ el.setAttribute('data-ob',t(cap)); el.setAttribute('title',t(tip)); }
-  });
-  document.body.classList.toggle('ob-off',!HINTS);
-}
-function toggleHints(){
-  HINTS=!HINTS;
-  try{ localStorage.setItem('shk_hints',HINTS?'1':'0'); }catch(e){}
-  applyOb();
 }
 
 // ── ДАННЫЕ / СОСТОЯНИЕ ───────────────────────────────────────────
@@ -268,7 +243,7 @@ let PRIV = true;
 
 // ── INIT ─────────────────────────────────────────────────────────
 window.onload = async () => {
-  CURRENT_LANG = localStorage.getItem('shk_lang') || 'sr';
+  CURRENT_LANG = localStorage.getItem('shk_lang') || 'ru';
   userName = localStorage.getItem('shk_name') || '';
   ['ru','sr','en'].forEach(l => document.getElementById('lang-'+l).classList.toggle('on', l===CURRENT_LANG));
   applyLang();

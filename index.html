@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Шахматка</title>
-<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
 <div class="topbar">
-  <span class="ob ob-demo">
-    <div class="logo"><span class="logo-badge">СТР</span><span id="ui-title"></span></div>
-    <span class="demo-badge" id="ui-demoBadge"></span>
-    <button class="btn" id="ui-demoReset" onclick="resetDemo()"></button>
-  </span>
+  <div class="logo"><span class="logo-badge">СТР</span><span id="ui-title"></span></div>
   <div class="sep"></div>
+  <button class="btn" id="ui-refresh" onclick="loadAll()"></button>
+  <span class="demo-badge" id="ui-demoBadge"></span>
+  <button class="btn" id="ui-demoReset" onclick="resetDemo()"></button>
   <div class="sync-dot" id="sdot"></div>
   <span class="sync-txt" id="stxt"></span>
   <div class="tb-right">
-    <span class="ob ob-role"><span id="userArea"></span></span>
+    <span id="userArea"></span>
     <div class="sep"></div>
-    <div class="chips ob ob-mode">
+    <div class="chips">
       <span class="chip on" id="mode-sec" onclick="setMode('section')"></span>
       <span class="chip" id="mode-work" onclick="setMode('work')"></span>
       <span class="chip" id="mode-gantt" onclick="setMode('gantt')"></span>
@@ -29,40 +28,30 @@
       <span class="chip" id="mode-prep" onclick="setMode('prep')"></span>
     </div>
     <div class="sep"></div>
-    <div class="chips lang-chips ob ob-lang">
-      <span class="chip" id="lang-ru" onclick="setLang('ru')"><span class="flag">🇷🇺</span>RU</span>
-      <span class="chip" id="lang-sr" onclick="setLang('sr')"><span class="flag">🇷🇸</span>SR</span>
-      <span class="chip" id="lang-en" onclick="setLang('en')"><span class="flag">🇬🇧</span>EN</span>
+    <div class="chips lang-chips">
+      <span class="chip on" id="lang-ru" onclick="setLang('ru')">RU</span>
+      <span class="chip" id="lang-sr" onclick="setLang('sr')">SR</span>
+      <span class="chip" id="lang-en" onclick="setLang('en')">EN</span>
     </div>
   </div>
 </div>
 
-<div class="ob-strip" id="obStrip">
-  <span class="ob-intro" id="ob-intro"></span>
-  <span class="ob-cta" id="ob-cta"></span>
-  <button class="ob-toggle" id="ob-toggle" onclick="toggleHints()"></button>
-</div>
-
 <div class="filterbar">
-  <span class="ob ob-filter">
-    <span class="secui fl" id="ui-sectionLbl"></span>
-    <div class="secui chips" id="secChips"></div>
-    <div class="secui sep" id="secSep"></div>
-    <span class="fl" id="ui-cutLbl"></span>
-    <div class="msel" id="cutMs"></div>
-    <div class="sep"></div>
-    <span class="fl" id="ui-groupLbl"></span>
-    <div class="msel" id="groupMs"></div>
-    <div class="sep"></div>
-    <span class="fl" id="ui-workLbl"></span>
-    <div class="msel" id="workMs"></div>
-  </span>
+  <span class="secui fl" id="ui-sectionLbl"></span>
+  <div class="secui chips" id="secChips"></div>
+  <div class="secui sep" id="secSep"></div>
+  <span class="fl" id="ui-cutLbl"></span>
+  <div class="msel" id="cutMs"></div>
   <div class="sep"></div>
-  <span class="ob ob-date">
-    <span class="fl" id="ui-deadlineLbl"></span>
-    <input type="date" class="fsel" id="deadlineInp" onchange="render()">
-  </span>
-  <button class="btn ob ob-view" id="viewBtn" onclick="toggleViewPanel()">👁 <span id="ui-showBtn"></span></button>
+  <span class="fl" id="ui-groupLbl"></span>
+  <div class="msel" id="groupMs"></div>
+  <div class="sep"></div>
+  <span class="fl" id="ui-workLbl"></span>
+  <div class="msel" id="workMs"></div>
+  <div class="sep"></div>
+  <span class="fl" id="ui-deadlineLbl"></span>
+  <input type="date" class="fsel" id="deadlineInp" onchange="render()">
+  <button class="btn" id="viewBtn" onclick="toggleViewPanel()">👁 <span id="ui-showBtn"></span></button>
 </div>
 
 <div class="filterbar" id="viewPanel" style="display:none;"></div>
@@ -128,17 +117,17 @@
 
 <div class="toasts" id="toasts"></div>
 
-<script src="lang.js?v=11"></script>
-<script src="demo-data.js?v=11"></script>
-<script src="core.js?v=11"></script>
-<script src="filters.js?v=11"></script>
-<script src="cells.js?v=11"></script>
-<script src="gantt.js?v=11"></script>
-<script src="tasks.js?v=11"></script>
-<script src="prep.js?v=11"></script>
-<script src="render.js?v=11"></script>
-<script src="summary.js?v=11"></script>
-<script src="tables.js?v=11"></script>
-<script src="modal.js?v=11"></script>
+<script src="lang.js?v=8"></script>
+<script src="demo-data.js?v=8"></script>
+<script src="core.js?v=8"></script>
+<script src="filters.js?v=8"></script>
+<script src="cells.js?v=8"></script>
+<script src="gantt.js?v=8"></script>
+<script src="tasks.js?v=8"></script>
+<script src="prep.js?v=8"></script>
+<script src="render.js?v=8"></script>
+<script src="summary.js?v=8"></script>
+<script src="tables.js?v=8"></script>
+<script src="modal.js?v=8"></script>
 </body>
 </html>

@@ -7,7 +7,6 @@
 const LANG = {
 
   ru: {
-    obIntro:'Демо. Кликайте ячейки, переключайте роли и язык.', obCta:'Изменения не сохраняются и видны только вам; «Сбросить» вернёт исходные данные. Хотите такую же для своего объекта — пишите: <a href=\"mailto:gunin.plan@gmail.com\">gunin.plan@gmail.com</a>', obHintsOn:'Скрыть подсказки', obHintsOff:'Показать подсказки', obcDemo:'Демо', obcRole:'Роль', obcMode:'Режимы', obcLang:'Язык', obcFilter:'Фильтры', obcDate:'К дате', obcView:'Что в ячейке', obtDemo:'Правки не сохраняются и видны только вам. «Сбросить» — вернуть исходные данные.', obtRole:'Роль-витрина: что вам видно. Генподрядчик — всё; Подрядчик/Аноним — без контрактов.', obtMode:'Как смотреть данные: по секции, по виду работ, график, задания, сводка, подготовка.', obtLang:'Язык интерфейса.', obtFilter:'Сузить картину: секции, этажи/разрез, группы и виды работ.', obtDate:'Срез на дату: что должно быть готово к выбранному дню.', obtView:'Что показывать в ячейке: процент, даты, отставание, фронт, контракты.',
     roleAnon:'Аноним', roleSub:'Подрядчик', roleGen:'Генподрядчик', demoBadge:'ДЕМО · правки не сохраняются', demoReset:'↺ Сбросить демо',
     // Топбар
     title:          'Шахматка приёмки',
@@ -151,7 +150,6 @@ const LANG = {
   },
 
   sr: {
-    obIntro:'Demo. Klikćite ćelije, menjajte ulogu i jezik.', obCta:'Izmene se ne čuvaju i vidi ih samo vi; „Reset“ vraća početne podatke. Želite ovakvu za svoj objekat — pišite: <a href=\"mailto:gunin.plan@gmail.com\">gunin.plan@gmail.com</a>', obHintsOn:'Sakrij podsetnike', obHintsOff:'Prikaži podsetnike', obcDemo:'Demo', obcRole:'Uloga', obcMode:'Režimi', obcLang:'Jezik', obcFilter:'Filteri', obcDate:'Do datuma', obcView:'U ćeliji', obtDemo:'Izmene se ne čuvaju i vidi ih samo vi. „Reset“ vraća početne podatke.', obtRole:'Uloga određuje šta vidite. Generalni izvođač — sve; Podizvođač/Anonimno — bez ugovora.', obtMode:'Kako gledati podatke: po sekciji, po vrsti radova, gantogram, zadaci, pregled, priprema.', obtLang:'Jezik interfejsa.', obtFilter:'Suzite prikaz: sekcije, spratovi/presek, grupe i vrste radova.', obtDate:'Presek na datum: šta treba da bude gotovo do izabranog dana.', obtView:'Šta prikazati u ćeliji: procenat, datumi, kašnjenje, front, ugovori.',
     roleAnon:'Anonimno', roleSub:'Podizvođač', roleGen:'Generalni izvođač', demoBadge:'DEMO · izmene se ne čuvaju', demoReset:'↺ Reset demoa',
     // Topbar
     title:          'Šahmatka prijema',
@@ -294,7 +292,6 @@ const LANG = {
   },
 
   en: {
-    obIntro:'Demo. Click cells, switch role and language.', obCta:'Changes are not saved and only you see them; “Reset” restores the original data. Want one for your site — write: <a href=\"mailto:gunin.plan@gmail.com\">gunin.plan@gmail.com</a>', obHintsOn:'Hide hints', obHintsOff:'Show hints', obcDemo:'Demo', obcRole:'Role', obcMode:'Modes', obcLang:'Language', obcFilter:'Filters', obcDate:'By date', obcView:'In cell', obtDemo:'Changes are not saved and only you see them. “Reset” restores the original data.', obtRole:'Role defines what you see. General contractor — everything; Subcontractor/Anonymous — no contracts.', obtMode:'How to view data: by section, by work type, timeline, tasks, summary, prep.', obtLang:'Interface language.', obtFilter:'Narrow the picture: sections, floors/cut, groups and work types.', obtDate:'By-date snapshot: what should be done by the chosen day.', obtView:'What to show in a cell: percent, dates, lag, front, contracts.',
     roleAnon:'Anonymous', roleSub:'Subcontractor', roleGen:'General contractor', demoBadge:'DEMO · changes are not saved', demoReset:'↺ Reset demo',
     // Topbar
     title:          'Acceptance Grid',
