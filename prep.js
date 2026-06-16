@@ -47,7 +47,9 @@ function prepBadge(p){
 
 function prepCellHtml(w, wi, phase){
   const p = prepPhaseStatus(w, phase);
-  if(p.st==='none') return `<td class="pp pp-none">—</td>`;
+  const phMeta = PREP_PHASES.find(x=>x.key===phase);
+  const lbl = esc(phMeta ? t(phMeta.lbl) : phase);   // метка фазы — для мобильной раскладки (data-label)
+  if(p.st==='none') return `<td class="pp pp-none" data-label="${lbl}">—</td>`;
   const dates = [
     p.start ? `${t('startShort')} ${fmtShort(toDmy(p.start))}` : '',
     p.due   ? `${t('readyBy')} ${fmtShort(toDmy(p.due))}`      : '',
@@ -56,7 +58,7 @@ function prepCellHtml(w, wi, phase){
   // Клик по ячейке больше НЕ переключает «Готово» (случайный тап на
   // телефоне менял данные молча) — теперь клик по строке открывает
   // карточку подготовки, переключение — осознанно, кнопкой в карточке.
-  return `<td class="pp pp-${p.st}">${prepBadge(p)}<div class="pp-dates">${esc(dates)}</div>${dur}</td>`;
+  return `<td class="pp pp-${p.st}" data-label="${lbl}">${prepBadge(p)}<div class="pp-dates">${esc(dates)}</div>${dur}</td>`;
 }
 
 function toDmy(d){
@@ -109,7 +111,7 @@ function renderPrep(container){
       h+=`<tr data-wi="${x.wi}" title="${esc(t('prepClickHint'))}">`+
          `<td class="pp-work">${dot}${esc(workLabel(x.w))}</td>`+
          PREP_PHASES.map(ph=>prepCellHtml(x.w, x.wi, ph.key)).join('')+
-         `<td class="pp-start">${startWork?esc(startWork):'—'}</td>`+   // дата старта — с годом
+         `<td class="pp-start" data-label="${esc(t('prepStart'))}">${startWork?esc(startWork):'—'}</td>`+   // дата старта — с годом
          `</tr>`;
     });
     h+=`</tbody></table></div>`;

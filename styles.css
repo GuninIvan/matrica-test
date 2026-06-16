@@ -375,3 +375,60 @@ table.prep-tbl{border-collapse:collapse;width:100%;table-layout:fixed;}
 .demo-cta-mail{color:#92400e;font-weight:700;text-decoration:underline;}
 .demo-cta-mail:hover{color:#b45309;}
 @media (max-width:720px){ .demo-strip{font-size:11px;padding:5px 10px;gap:6px;} }
+
+/* ═══ Мобильные правки: топбар (порядок строк + разделитель) и «Подготовка» ═══ */
+/* Десктоп НЕ затрагивается — всё внутри @media и одного data-label. */
+@media (max-width: 720px){
+  /* tb-right «растворяем»: его дети (роли/режимы/языки) становятся прямыми
+     флекс-элементами топбара — только так их можно переставить относительно
+     бейджа «ДЕМО» и кнопки «Сбросить». */
+  .tb-right{display:contents;}
+
+  /* Порядок строк сверху вниз:
+     1) лого + бейдж ДЕМО · 2) языки · 3) Сбросить + статус · 4) роли · 5) режимы */
+  .topbar .logo{order:0;}
+  .topbar .demo-badge{order:1;}
+  .topbar .lang-chips{order:2;flex:1 1 100%;}          /* языки — своя строка */
+  .topbar #ui-demoReset{order:3;}
+  .topbar #sdot{order:4;}
+  .topbar #stxt{order:5;}
+  .topbar #userArea{order:6;flex:1 1 100%;width:auto;} /* перебивает order:-1 из правила выше */
+
+  /* Режимы — своя строка + линия-разделитель между ролями и режимами
+     (как граница между языком и секциями). */
+  .topbar .tb-right > .chips:not(.lang-chips){
+    order:7;flex:1 1 100%;
+    border-top:1px solid var(--brd);
+    margin-top:4px;padding-top:8px;
+  }
+
+  /* ── «Подготовка»: тесную таблицу превращаем в карточки строк ── */
+  #prepWrap{padding:12px 10px;}
+  .prep-tbl thead{display:none;}
+  .prep-tbl,.prep-tbl tbody{display:block;width:100%;}
+  .prep-tbl tr{display:block;padding:10px 12px;border-bottom:1px solid var(--brd);}
+  .prep-tbl tr:last-child{border-bottom:none;}
+  .prep-tbl td{display:block;padding:0;border:none;white-space:normal;}
+  .prep-tbl .pp-work{width:auto;min-width:0;font-size:13px;margin-bottom:6px;}
+
+  /* фаза = строка: [метка фазы][бейдж]; даты и длительность переносятся ниже */
+  .prep-tbl td.pp{
+    display:flex;flex-wrap:wrap;align-items:center;column-gap:8px;row-gap:2px;
+    min-width:0;margin-top:4px;padding:5px 8px;border-radius:6px;
+  }
+  .prep-tbl td.pp::before{
+    content:attr(data-label);
+    flex:0 0 70px;
+    font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);
+  }
+  .prep-tbl td.pp .pp-dates{flex:1 1 100%;margin-left:78px;margin-top:0;white-space:normal;}
+  .prep-tbl td.pp .pp-dur{flex:1 1 100%;margin-left:78px;}
+
+  .prep-tbl .pp-start{
+    width:auto;margin-top:8px;padding-top:6px;border-top:1px dashed var(--brd);font-size:11px;
+  }
+  .prep-tbl .pp-start::before{
+    content:attr(data-label) ": ";
+    font-size:9.5px;font-weight:700;text-transform:uppercase;color:var(--ink3);
+  }
+}
