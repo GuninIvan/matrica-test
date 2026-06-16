@@ -367,3 +367,11 @@ table.prep-tbl{border-collapse:collapse;width:100%;}
 /* демо-бейдж */
 .demo-badge{font-size:11px;font-weight:700;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:999px;padding:3px 10px;white-space:nowrap;}
 .demo-roles .chip{cursor:pointer;}
+
+/* демо-полоса сверху (подсказка + CTA) */
+.demo-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:6px 16px;background:var(--bg2);border-bottom:1px solid var(--brd);flex-shrink:0;font-size:12px;line-height:1.35;}
+.demo-tip{color:#1e40af;background:#dbeafe;border:1px solid #bfdbfe;border-radius:999px;padding:3px 12px;font-weight:600;}
+.demo-cta{color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:999px;padding:3px 12px;}
+.demo-cta-mail{color:#92400e;font-weight:700;text-decoration:underline;}
+.demo-cta-mail:hover{color:#b45309;}
+@media (max-width:720px){ .demo-strip{font-size:11px;padding:5px 10px;gap:6px;} }

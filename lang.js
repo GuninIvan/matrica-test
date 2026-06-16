@@ -8,6 +8,8 @@ const LANG = {
 
   ru: {
     roleAnon:'Аноним', roleSub:'Подрядчик', roleGen:'Генподрядчик', demoBadge:'ДЕМО · правки не сохраняются', demoReset:'↺ Сбросить демо',
+    demoTip:'Демо. Кликайте ячейки, переключайте роли и язык.',
+    demoCta:'Изменения не сохраняются и видны только вам; «Сбросить» вернёт исходные данные. Настрою аналогичную матрицу под потребности вашего проекта — пишите:',
     // Топбар
     title:          'Шахматка приёмки',
     refresh:        '↻ Обновить',
@@ -151,6 +153,8 @@ const LANG = {
 
   sr: {
     roleAnon:'Anonimno', roleSub:'Podizvođač', roleGen:'Generalni izvođač', demoBadge:'DEMO · izmene se ne čuvaju', demoReset:'↺ Reset demoa',
+    demoTip:'Demo. Kliknite na ćelije, menjajte uloge i jezik.',
+    demoCta:'Izmene se ne čuvaju i vidljive su samo vama; „Reset“ vraća početne podatke. Podesiću sličnu matricu prema potrebama vašeg projekta — pišite:',
     // Topbar
     title:          'Šahmatka prijema',
     refresh:        '↻ Osveži',
@@ -293,6 +297,8 @@ const LANG = {
 
   en: {
     roleAnon:'Anonymous', roleSub:'Subcontractor', roleGen:'General contractor', demoBadge:'DEMO · changes are not saved', demoReset:'↺ Reset demo',
+    demoTip:'Demo. Click cells, switch roles and language.',
+    demoCta:'Changes are not saved and visible only to you; “Reset” restores the original data. I’ll set up a similar matrix tailored to your project — get in touch:',
     // Topbar
     title:          'Acceptance Grid',
     refresh:        '↻ Refresh',

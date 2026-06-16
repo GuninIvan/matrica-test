@@ -170,7 +170,8 @@ function setLang(lang){
 
 function applyLang(){
   document.getElementById('ui-title').textContent      = t('title');
-  document.getElementById('ui-refresh').textContent    = t('refresh');
+  var _dt=document.getElementById('ui-demoTip');     if(_dt) _dt.textContent=t('demoTip');
+  var _dc=document.getElementById('ui-demoCtaText'); if(_dc) _dc.textContent=t('demoCta');
   var _db=document.getElementById('ui-demoBadge'); if(_db) _db.textContent=t('demoBadge');
   var _dr=document.getElementById('ui-demoReset'); if(_dr) _dr.textContent=t('demoReset');
   document.getElementById('mode-sec').textContent      = t('bySection');
