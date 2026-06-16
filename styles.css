@@ -301,13 +301,13 @@ td.cell.dim .ci{opacity:.35;filter:grayscale(.8);}
 /* ── Режим «Подготовка» ── */
 #prepWrap{padding:14px 16px;overflow:auto;}
 .prep-head{display:flex;align-items:center;gap:10px;font-size:13px;margin-bottom:10px;}
-table.prep-tbl{border-collapse:collapse;width:100%;}
+table.prep-tbl{border-collapse:collapse;width:100%;table-layout:fixed;}
 .prep-tbl th{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);text-align:left;padding:6px 12px;border-bottom:1px solid var(--brd);white-space:nowrap;}
 .prep-tbl td{padding:6px 12px;border-bottom:1px solid var(--brd);font-size:11px;vertical-align:top;}
 .prep-tbl tr:last-child td{border-bottom:none;}
-.prep-tbl .pp-work{min-width:160px;font-weight:600;}
+.prep-tbl .pp-work{width:210px;min-width:160px;font-weight:600;}
 .prep-tbl .pp-work .dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:6px;}
-.prep-tbl .pp-start{font-family:var(--mono);white-space:nowrap;}
+.prep-tbl .pp-start{width:150px;font-family:var(--mono);white-space:nowrap;}
 .pp{min-width:130px;}
 .pp-none{color:var(--ink3);}
 .pp-ok{background:#f0fdf4;}

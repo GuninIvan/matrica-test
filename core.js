@@ -393,7 +393,7 @@ async function loadAll(){
         planDate: normalizeDate(r['Дата план']),
         factDate: normalizeDate(r['Дата факт']),
         dev:      parseDev(r['Отставание']),
-        front:    parseGate(r['Фронт открыт']),
+        front:    (DEMO ? true : parseGate(r['Фронт открыт'])),   // ДЕМО: фронт всегда открыт (нет Google-таблицы) → риск «Фронт закрыт» и иконка 🔒 не возникают
         rd:       parseGate(r['РД выпущено']),
         tender:   parseGate(r['Тендер проведен']),
         contract: parseGate(r['Контракт заключен']),

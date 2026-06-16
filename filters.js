@@ -193,7 +193,6 @@ function buildViewPanel(){
     ['dev',     t('showDev')],
     ['crew',    t('showCrew')],
     ['vol',     t('showVol')],
-    ['front',   t('showFront')],
     ['rd',      t('showRd')],
     ['tender',  t('showTender')],
     ['contract',t('showContract')],
