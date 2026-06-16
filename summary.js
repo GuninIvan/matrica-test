@@ -41,6 +41,20 @@ function sumHeadLabel(raw){
   if(/отстав|kašnj|kasnj|lag/.test(l))     return t('sumColLag');
   return s;
 }
+// Перевод значения-названия (вид работ / группа) под текущий язык.
+// Лист «Сводка» хранит русские имена; для отображения подменяем их на
+// перевод из «Списка работ» (workLabel/groupLabel, колонки SR/EN).
+// Сравнение и ключи остаются на русском — переводится только видимый текст.
+function sumNameLabel(head,raw){
+  const v=String(raw==null?'':raw).trim();
+  if(v==='') return v;
+  if(/вид работ|vrsta|work type/i.test(head)){
+    const w=CONFIG.works.find(x=>String(x['Вид работ']||'').trim()===v);
+    return w?workLabel(w):v;
+  }
+  if(/групп|grup|group/i.test(head)) return groupLabel(v);
+  return v;
+}
 // isName=true помечает ячейку-название (вид работ/группа) — на мобиле она
 // становится заголовком карточки (см. styles.css, @media ≤720px).
 function sumCellHtml(head,val,prevVal,label,isName){
@@ -59,12 +73,15 @@ function sumCellHtml(head,val,prevVal,label,isName){
       return sumTd('—',cls,'color:var(--ink3);',label);
     }
   }
+  // текст-название (вид работ/группа) — показываем в переводе текущего языка
+  const disp=sumNameLabel(head,v);
   // повторяющееся значение группирующей колонки — приглушаем
+  // (сравниваем по сырому русскому значению, чтобы группировка не ломалась)
   if(/групп|grup|group/i.test(head) && v!=='' && v===String(prevVal==null?'':prevVal).trim()){
-    return sumTd(esc(v),cls,'color:var(--ink3);font-size:10px;',label);
+    return sumTd(esc(disp),cls,'color:var(--ink3);font-size:10px;',label);
   }
   if(/^-?\d+([.,]\d+)?$/.test(v)){ cls.push('num'); return sumTd(esc(v),cls,'',label); }
-  return sumTd(esc(v),cls,'',label);
+  return sumTd(esc(disp),cls,'',label);
 }
 // Сетка листа → список таблиц: режем по пустым строкам И по пустым колонкам
 // (на листе таблицы могут стоять рядом по горизонтали)
