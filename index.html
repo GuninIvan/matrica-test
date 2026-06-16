@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Шахматка</title>
-<link rel="stylesheet" href="styles.css?v=12">
+<link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
 
@@ -57,7 +57,9 @@
   <div class="msel" id="workMs"></div>
   <div class="sep"></div>
   <span class="fl" id="ui-deadlineLbl"></span>
-  <input type="date" class="fsel" id="deadlineInp" onchange="render()">
+  <input type="text" class="fsel" id="deadlineInp" placeholder="Впишите дату"
+         onfocus="this.type='date';try{this.showPicker&&this.showPicker()}catch(e){}"
+         onblur="if(!this.value)this.type='text'" onchange="render()">
   <button class="btn" id="viewBtn" onclick="toggleViewPanel()">👁 <span id="ui-showBtn"></span></button>
 </div>
 
@@ -124,17 +126,17 @@
 
 <div class="toasts" id="toasts"></div>
 
-<script src="lang.js?v=12"></script>
-<script src="demo-data.js?v=12"></script>
-<script src="core.js?v=12"></script>
-<script src="filters.js?v=12"></script>
-<script src="cells.js?v=12"></script>
-<script src="gantt.js?v=12"></script>
-<script src="tasks.js?v=12"></script>
-<script src="prep.js?v=12"></script>
-<script src="render.js?v=12"></script>
-<script src="summary.js?v=12"></script>
-<script src="tables.js?v=12"></script>
-<script src="modal.js?v=12"></script>
+<script src="lang.js?v=13"></script>
+<script src="demo-data.js?v=13"></script>
+<script src="core.js?v=13"></script>
+<script src="filters.js?v=13"></script>
+<script src="cells.js?v=13"></script>
+<script src="gantt.js?v=13"></script>
+<script src="tasks.js?v=13"></script>
+<script src="prep.js?v=13"></script>
+<script src="render.js?v=13"></script>
+<script src="summary.js?v=13"></script>
+<script src="tables.js?v=13"></script>
+<script src="modal.js?v=13"></script>
 </body>
 </html>

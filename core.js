@@ -181,6 +181,7 @@ function applyLang(){
   document.getElementById('mode-sum').textContent      = t('bySummary');
   document.getElementById('mode-prep').textContent     = t('byPrep');
   document.getElementById('ui-deadlineLbl').textContent= t('deadlineLbl');
+  var _di=document.getElementById('deadlineInp'); if(_di) _di.setAttribute('placeholder', t('deadlinePlaceholder'));
   document.getElementById('ui-showBtn').textContent    = t('showBtn');
   document.getElementById('ui-sectionLbl').textContent = t('sectionLbl');
   document.getElementById('ui-cutLbl').textContent     = t('cutLbl');

@@ -271,7 +271,17 @@ td.cell.dim .ci{opacity:.35;filter:grayscale(.8);}
   .filterbar{gap:6px;padding:8px 10px;}
   .filterbar .sep{display:none;}
   .filterbar .fl{display:none;}            /* подписи Секция:/Этаж: скрыты — компактнее */
-  #secChips{width:100%;}
+  /* 1.5 линия после секций (под чипами секций) — та же тонкая линия */
+  #secChips{width:100%;border-bottom:1px solid var(--brd);margin-bottom:4px;padding-bottom:8px;}
+  /* 1.6 линия после фильтров (над строкой даты).
+     Пустую подпись «К дате:» используем как разделитель во всю ширину
+     и как перенос строки перед полем даты: текст спрятан (height:0;
+     overflow:hidden), видна только верхняя граница. */
+  #ui-deadlineLbl{
+    display:block;flex:1 1 100%;
+    height:0;overflow:hidden;padding:0;margin-top:4px;
+    border-top:1px solid var(--brd);
+  }
   .fsel{flex:1;min-width:90px;}
   .legend{flex-wrap:wrap;}
   /* Таблица не скроллится отдельно — горизонталь уходит в скролл всей
@@ -299,7 +309,10 @@ td.cell.dim .ci{opacity:.35;filter:grayscale(.8);}
 .risk-pill{font-size:10.5px;background:#fef2f2;border:1px solid #fecaca;border-radius:999px;padding:2px 9px;color:#b91c1c;font-weight:600;}
 
 /* ── Режим «Подготовка» ── */
-#prepWrap{padding:14px 16px;overflow:auto;}
+/* text-size-adjust:100% — глушим авто-увеличение шрифта мобильными браузерами:
+   иначе разные карточки групп получают разный коэффициент инфляции и шрифт
+   «гуляет» между блоками. На десктопе значение по умолчанию = 100% (no-op). */
+#prepWrap{padding:14px 16px;overflow:auto;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 .prep-head{display:flex;align-items:center;gap:10px;font-size:13px;margin-bottom:10px;}
 table.prep-tbl{border-collapse:collapse;width:100%;table-layout:fixed;}
 .prep-tbl th{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3);text-align:left;padding:6px 12px;border-bottom:1px solid var(--brd);white-space:nowrap;}
@@ -333,7 +346,7 @@ table.prep-tbl{border-collapse:collapse;width:100%;table-layout:fixed;}
 .risk-hdr{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;font-size:11.5px;}
 .risk-hdr b{color:#b45309;}
 .risk-sum{font-family:var(--mono);font-size:11px;color:#b45309;}
-.risk-arr{margin-left:auto;color:#b45309;font-size:11px;}
+.risk-arr{margin-left:auto;color:#b45309;font-size:11px;font-weight:600;text-decoration:underline;white-space:nowrap;}
 .risk-card.closed{padding:7px 12px;}
 .risk-card.closed .risk-hdr{margin:0;}
 
@@ -385,17 +398,28 @@ table.prep-tbl{border-collapse:collapse;width:100%;table-layout:fixed;}
   .tb-right{display:contents;}
 
   /* Порядок строк сверху вниз:
-     1) лого + бейдж ДЕМО · 2) языки · 3) Сбросить + статус · 4) роли · 5) режимы */
+     1) лого + бейдж ДЕМО · 2) языки · 3) Сбросить + статус · 4) роли · 5) режимы
+     Между логическими строками — одинаковые тонкие линии-разделители
+     (1px var(--brd)), как между ролями и режимами. */
   .topbar .logo{order:0;}
   .topbar .demo-badge{order:1;}
-  .topbar .lang-chips{order:2;flex:1 1 100%;}          /* языки — своя строка */
+  /* 1.1 линия после «Шахматка приёмки» (над языками) +
+     1.2 линия после языков (под ними) */
+  .topbar .lang-chips{
+    order:2;flex:1 1 100%;                                /* языки — своя строка */
+    border-top:1px solid var(--brd);    margin-top:4px;    padding-top:8px;
+    border-bottom:1px solid var(--brd); margin-bottom:4px; padding-bottom:8px;
+  }
   .topbar #ui-demoReset{order:3;}
   .topbar #sdot{order:4;}
   .topbar #stxt{order:5;}
-  .topbar #userArea{order:6;flex:1 1 100%;width:auto;} /* перебивает order:-1 из правила выше */
+  /* 1.3 линия после «Сбросить демо» (над ролями) */
+  .topbar #userArea{
+    order:6;flex:1 1 100%;width:auto;                     /* перебивает order:-1 из правила выше */
+    border-top:1px solid var(--brd);margin-top:4px;padding-top:8px;
+  }
 
-  /* Режимы — своя строка + линия-разделитель между ролями и режимами
-     (как граница между языком и секциями). */
+  /* 1.4 линия после ролей (над режимами) — та же, на всю ширину строки. */
   .topbar .tb-right > .chips:not(.lang-chips){
     order:7;flex:1 1 100%;
     border-top:1px solid var(--brd);

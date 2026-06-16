@@ -117,7 +117,7 @@ function renderRiskPanel(DL){
     contract.length? `✍ ${contract.length}` : ''
   ].filter(Boolean).join(' · ');
   let h=`<div class="risk-card${RISK_OPEN?'':' closed'}">`;
-  h+=`<div class="risk-hdr" onclick="toggleRisk()"><b>⚠ ${t('risksTitle')}</b> <span class="risk-sum">${sum}</span><span class="risk-arr">${RISK_OPEN?'▾':'▸'}</span></div>`;
+  h+=`<div class="risk-hdr" onclick="toggleRisk()"><b>⚠ ${t('risksTitle')}</b> <span class="risk-sum">${sum}</span><span class="risk-arr">${RISK_OPEN?t('riskHideDetails'):t('riskShowDetails')}</span></div>`;
   if(RISK_OPEN){
     if(noFront.length){
       h+=`<div class="risk-line"><b>🔒 ${t('riskNoFront')} · ${noFront.length}</b></div>`;

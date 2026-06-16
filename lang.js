@@ -55,6 +55,8 @@ const LANG = {
     rdNotReady:     'РД не выпущена',
     tenderNotReady: 'Тендер не проведён',
     risksTitle:     'Риски',
+    riskShowDetails:'Показать подробности',
+    riskHideDetails:'Скрыть подробности',
     prepClickHint:  'Клик — карточка подготовки',
     prepMarkReady:  'Отметить готовым',
     prepMarkUnready:'Снять готовность',
@@ -91,6 +93,7 @@ const LANG = {
     showTender:     'Тендер 🧾',
     showContract:   'Контракт ✍',
     deadlineLbl:    'К дате:',
+    deadlinePlaceholder:'Впишите дату',
 
     // Вход / роли
     passHolder:     'Пароль…',
@@ -199,6 +202,8 @@ const LANG = {
     rdNotReady:     'PD nije izdata',
     tenderNotReady: 'Tender nije sproveden',
     risksTitle:     'Rizici',
+    riskShowDetails:'Prikaži detalje',
+    riskHideDetails:'Sakrij detalje',
     prepClickHint:  'Klik — kartica pripreme',
     prepMarkReady:  'Označi kao gotovo',
     prepMarkUnready:'Poništi gotovo',
@@ -235,6 +240,7 @@ const LANG = {
     showTender:     'Tender 🧾',
     showContract:   'Ugovor ✍',
     deadlineLbl:    'Do datuma:',
+    deadlinePlaceholder:'Unesite datum',
 
     // Prijava / uloge
     passHolder:     'Lozinka…',
@@ -343,6 +349,8 @@ const LANG = {
     rdNotReady:     'Design not issued',
     tenderNotReady: 'Tender not held',
     risksTitle:     'Risks',
+    riskShowDetails:'Show details',
+    riskHideDetails:'Hide details',
     prepClickHint:  'Click — preparation card',
     prepMarkReady:  'Mark as done',
     prepMarkUnready:'Unmark done',
@@ -379,6 +387,7 @@ const LANG = {
     showTender:     'Tender 🧾',
     showContract:   'Contract ✍',
     deadlineLbl:    'By date:',
+    deadlinePlaceholder:'Enter date',
 
     // Login / roles
     passHolder:     'Password…',
