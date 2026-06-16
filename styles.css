@@ -103,7 +103,7 @@ table.sum-tbl{border-collapse:collapse;width:100%;}
 .sum-tbl tr:last-child td{border-bottom:none;}
 .sum-tbl td.num{font-family:var(--mono);text-align:right;}
 .sum-pct{font-family:var(--mono);font-size:11px;color:var(--ink1);}
-.sum-pct.plan{color:var(--ink3);}
+.sum-pct.plan{color:var(--ink);}
 /* ── Сменно-суточные задания ── */
 #tasksWrap{padding:12px 16px 24px;max-width:1100px;}
 .tk-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
@@ -375,6 +375,36 @@ table.prep-tbl{border-collapse:collapse;width:100%;table-layout:fixed;}
   .sum-tbl col.c-num{width:58px;}
   .sum-tbl col.c-cmt{width:110px;}
   .sum-issue{font-size:9.5px;}
+}
+
+/* ── Сводка на телефоне: строки таблицы → карточки с подписями колонок.
+   Колонки Сводки динамические (зависят от листа), поэтому подпись каждой
+   ячейки берётся из её data-label (проставляет summary.js), как в
+   «Подготовке». Десктоп не затрагивается. ── */
+@media (max-width: 720px){
+  .sum-card{overflow:visible;}
+  .sum-tbl{display:block;width:100%;table-layout:auto;}
+  .sum-tbl colgroup, .sum-tbl thead{display:none;}
+  .sum-tbl tbody{display:block;width:100%;}
+  .sum-tbl tr{display:block;padding:10px 12px;border-bottom:1px solid var(--brd);}
+  .sum-tbl tr:last-child{border-bottom:none;}
+  .sum-tbl td{
+    display:flex;align-items:baseline;gap:8px;
+    padding:2px 0;border:none;white-space:normal;overflow-wrap:break-word;
+    text-align:left;font-size:12px;
+  }
+  .sum-tbl td:empty{display:none;}                       /* пустые строки карточки скрываем */
+  .sum-tbl td::before{
+    content:attr(data-label);
+    flex:0 0 44%;
+    font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;
+    color:var(--ink3);
+  }
+  /* ячейка-название работы/группы — заголовок карточки, без подписи */
+  .sum-tbl td.sum-name{display:block;margin-bottom:5px;font-size:13px;font-weight:700;color:var(--ink);}
+  .sum-tbl td.sum-name::before{display:none;}
+  .sum-tbl td.num{font-family:var(--mono);}              /* числа влево, как остальные строки */
+  .sum-issue{font-size:11px !important;}
 }
 
 /* демо-бейдж */

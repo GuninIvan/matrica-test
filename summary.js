@@ -21,24 +21,50 @@ function sumPctVal(raw){
   if(!v.includes('%') && Math.abs(n)<=1) return Math.round(n*100);
   return Math.round(n);
 }
-function sumCellHtml(head,val,prevVal){
+// Сборка <td> с подписью для мобильной карточки (data-label) и классами.
+function sumTd(inner,cls,style,label){
+  const c=cls&&cls.length?` class="${cls.join(' ')}"`:'';
+  const s=style?` style="${style}"`:'';
+  const dl=label!=null&&label!==''?` data-label="${esc(label)}"`:' data-label=""';
+  return `<td${c}${s}${dl}>${inner}</td>`;
+}
+// Перевод заголовка столбца Сводки: распознаём тип колонки и отдаём t().
+// Неизвестный заголовок оставляем как в данных листа.
+function sumHeadLabel(raw){
+  const s=String(raw==null?'':raw).trim(), l=s.toLowerCase();
+  if(!l) return s;
+  if(/групп|grup|group/.test(l))           return t('sumColGroup');
+  if(/вид работ|vrsta|work type/.test(l))  return t('sumColWork');
+  const isPct=/процент|procen|percent|%/.test(l);
+  if(isPct && /план|plan/.test(l))         return t('sumColPctPlan');
+  if(isPct)                                 return t('sumColPctFact');
+  if(/отстав|kašnj|kasnj|lag/.test(l))     return t('sumColLag');
+  return s;
+}
+// isName=true помечает ячейку-название (вид работ/группа) — на мобиле она
+// становится заголовком карточки (см. styles.css, @media ≤720px).
+function sumCellHtml(head,val,prevVal,label,isName){
   const v=String(val==null?'':val).trim();
+  const cls=[]; if(isName) cls.push('sum-name');
   if(/процент|procenat|percent|%/i.test(head)){
     const n=sumPctVal(v);
-    if(n!==null) return `<td>${sumBar(n,/план|plan/i.test(head))}</td>`;
+    if(n!==null) return sumTd(sumBar(n,/план|plan/i.test(head)),cls,'',label);
   }
   if(/отстав|kašnj|kasnj|lag/i.test(head)){
     const n=parseFloat(v.replace(',','.'));
-    if(!isNaN(n)&&n>0) return `<td class="num" style="color:#dc2626;font-weight:700;">+${esc(v)}</td>`;
-    if(!isNaN(n)&&n<0) return `<td class="num" style="color:#16a34a;font-weight:700;">${esc(v)}</td>`;
-    if(!isNaN(n))      return `<td class="num" style="color:var(--ink3);">—</td>`;
+    if(!isNaN(n)){
+      cls.push('num');
+      if(n>0)      return sumTd('+'+esc(v),cls,'color:#dc2626;font-weight:700;',label);
+      if(n<0)      return sumTd(esc(v),cls,'color:#16a34a;font-weight:700;',label);
+      return sumTd('—',cls,'color:var(--ink3);',label);
+    }
   }
   // повторяющееся значение группирующей колонки — приглушаем
   if(/групп|grup|group/i.test(head) && v!=='' && v===String(prevVal==null?'':prevVal).trim()){
-    return `<td style="color:var(--ink3);font-size:10px;">${esc(v)}</td>`;
+    return sumTd(esc(v),cls,'color:var(--ink3);font-size:10px;',label);
   }
-  if(/^-?\d+([.,]\d+)?$/.test(v)) return `<td class="num">${esc(v)}</td>`;
-  return `<td>${esc(v)}</td>`;
+  if(/^-?\d+([.,]\d+)?$/.test(v)){ cls.push('num'); return sumTd(esc(v),cls,'',label); }
+  return sumTd(esc(v),cls,'',label);
 }
 // Сетка листа → список таблиц: режем по пустым строкам И по пустым колонкам
 // (на листе таблицы могут стоять рядом по горизонтали)
@@ -105,27 +131,28 @@ function renderSummary(sw,empty){
   let html='';
   if(SUMMARY.length){
     splitSummaryGrid(SUMMARY).forEach(b=>{
-      let title='';
+      let dataTitle='';
       if(b.length>1 && b[0].filter(c=>String(c).trim()!=='').length===1){
-        title=b[0].find(c=>String(c).trim()!==''); b=b.slice(1);
+        dataTitle=b[0].find(c=>String(c).trim()!==''); b=b.slice(1);
       }
       if(!b.length) return;
       const head=b[0];
       const hs=head.map(x=>String(x).toLowerCase());
       const workCol = hs.findIndex(x=>/вид работ|vrsta|work type/.test(x));
       const groupCol= hs.findIndex(x=>/групп|grup|group/.test(x));
-      // нет своего заголовка — даём по составу колонок
-      if(!title){
-        if(workCol>-1) title=t('sumByWork');
-        else if(groupCol>-1) title=t('sumByGroup');
-      }
+      const nameCol = workCol>-1?workCol:groupCol;
+      // Заголовок: переводим по составу колонок; литеральный заголовок
+      // листа (часто на одном языке) используем только если колонки не опознаны.
+      const title = workCol>-1 ? t('sumByWork')
+                  : groupCol>-1 ? t('sumByGroup')
+                  : dataTitle;
       // Единая сетка: имена — резиновые, числа — фиксированные,
       // комментарий — фиксированный. Числовые колонки двух таблиц
       // встают друг под другом, ничего не «едет».
       const isNum=x=>/процент|отстав|percent|lag|kašnj|procen/.test(x);
       let colg='<colgroup>'+hs.map(x=>isNum(x)?'<col class="c-num">':'<col class="c-name">').join('')+'<col class="c-cmt"></colgroup>';
       html+=`<div class="sum-card">${title?`<div class="sum-title">${esc(title)}</div>`:''}<table class="sum-tbl">${colg}<thead><tr>`;
-      head.forEach(hd=>{ html+=`<th>${esc(String(hd))}</th>`; });
+      head.forEach(hd=>{ html+=`<th>${esc(sumHeadLabel(hd))}</th>`; });
       html+=`<th>${esc(t('colIssues'))}</th>`;
       html+='</tr></thead><tbody>';
       b.slice(1).forEach((r,ri)=>{
@@ -134,8 +161,8 @@ function renderSummary(sw,empty){
         let issue='';
         if(workCol>-1)       issue=issueText(issues.byWork.get(String(r[workCol]||'').trim()));
         else if(groupCol>-1) issue=issueText(issues.byGroup.get(String(r[groupCol]||'').trim()));
-        html+='<tr>'+head.map((hd,i)=>sumCellHtml(hd,r[i],prev?prev[i]:null)).join('')
-             +`<td class="sum-issue">${issue}</td>`+'</tr>';
+        html+='<tr>'+head.map((hd,i)=>sumCellHtml(hd,r[i],prev?prev[i]:null,sumHeadLabel(hd),i===nameCol)).join('')
+             +`<td class="sum-issue" data-label="${esc(t('colIssues'))}">${issue}</td>`+'</tr>';
       });
       html+='</tbody></table></div>';
     });
@@ -168,8 +195,12 @@ function sumAggRow(label, cells){
   const prog=cells.filter(c=>c.pct>0&&c.pct<100).length;
   const avg=total?Math.round(cells.reduce((a,c)=>a+c.pct,0)/total):0;
   const dev=cells.reduce((m,c)=>c.dev!==null&&c.dev>m?c.dev:m,0);
-  return `<tr><td>${esc(label)}</td><td class="num">${total}</td><td class="num">${done}</td><td class="num">${prog}</td><td>${sumBar(avg)}</td>`+
-    `<td class="num"${dev>0?' style="color:#dc2626;font-weight:700;"':''}>${dev>0?'+'+dev+DAY_LBL[CURRENT_LANG]:'—'}</td></tr>`;
+  return `<tr><td class="sum-name" data-label="">${esc(label)}</td>`+
+    `<td class="num" data-label="${esc(t('total'))}">${total}</td>`+
+    `<td class="num" data-label="${esc(t('done'))}">${done}</td>`+
+    `<td class="num" data-label="${esc(t('inProg'))}">${prog}</td>`+
+    `<td data-label="${esc(t('avgPct'))}">${sumBar(avg)}</td>`+
+    `<td class="num" data-label="${esc(t('maxDev'))}"${dev>0?' style="color:#dc2626;font-weight:700;"':''}>${dev>0?'+'+dev+DAY_LBL[CURRENT_LANG]:'—'}</td></tr>`;
 }
 function computedSummaryHtml(){
   const headRow=`<thead><tr><th></th><th>${t('total')}</th><th>${t('done')}</th><th>${t('inProg')}</th><th>${t('avgPct')}</th><th>${t('maxDev')}</th></tr></thead>`;
